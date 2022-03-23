@@ -1,0 +1,41 @@
+{
+    "name": "cuonggt/binance-connector-php",
+    "description": "This is a lightweight library that works as a connector to the Binance public API.",
+    "keywords": ["php", "binance"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/cuonggt/binance-connector-php/issues",
+        "source": "https://github.com/cuonggt/binance-connector-php"
+    },
+    "authors": [
+        {
+            "name": "Cuong Giang",
+            "email": "cuong@gtk.vn"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/http": "^9.5",
+        "illuminate/support": "^9.0",
+        "textalk/websocket": "^1.5"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.5",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Binance\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Binance\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
