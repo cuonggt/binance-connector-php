@@ -27,11 +27,15 @@ trait MarketData
     /**
      * Current exchange trading rules and symbol information.
      *
-     * @param  string  $symbol
+     * @param  string|null  $symbol
      * @return mixed
      */
-    public function exchangeInfo($symbol)
+    public function exchangeInfo($symbol = null)
     {
+        if (empty($symbol)) {
+            return $this->client->publicRequest('GET', '/api/v3/exchangeInfo');
+        }
+
         $params = is_array($symbol) ? [
             'symbols' => '["'.implode('","', $symbol).'"]',
         ] : ['symbol' => $symbol];

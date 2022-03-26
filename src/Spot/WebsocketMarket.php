@@ -44,15 +44,13 @@ trait WebsocketMarket
      * 24hr rolling window mini-ticker statistics. These are NOT the statistics of the UTC day,
      * but a 24hr rolling window for the previous 24hrs.
      *
-     * @param  string|null  $symbol
+     * @param  string  $symbol
      * @param  callable  $callback
      * @return void
      */
-    public function listenMiniTickerStream($symbol = null, $callback)
+    public function listenMiniTickerStream($symbol, $callback)
     {
-        $stream = $symbol ? strtolower($symbol).'@miniTicker' : '!miniTicker@arr';
-
-        $this->client->subscribeStream($stream, $callback);
+        $this->client->subscribeStream(strtolower($symbol).'@miniTicker', $callback);
     }
 
     /**
@@ -64,7 +62,7 @@ trait WebsocketMarket
      */
     public function listenAllMarketMiniTickersStream($callback)
     {
-        return $this->listenMiniTickerStream(null, $callback);
+        $this->client->subscribeStream('!miniTicker@arr', $callback);
     }
 
     /**
@@ -77,9 +75,7 @@ trait WebsocketMarket
      */
     public function listenTickerStream($symbol, $callback)
     {
-        $stream = $symbol ? strtolower($symbol).'@ticker' : '!ticker@arr';
-
-        $this->client->subscribeStream($stream, $callback);
+        $this->client->subscribeStream(strtolower($symbol).'@ticker', $callback);
     }
 
     /**
@@ -91,21 +87,19 @@ trait WebsocketMarket
      */
     public function listenAllMarketTickersStream($callback)
     {
-        $this->listenTickerStream(null, $callback);
+        $this->client->subscribeStream('!ticker@arr', $callback);
     }
 
     /**
      * Pushes any update to the best bid or ask's price or quantity in real-time for a specified symbol.
      *
-     * @param  string|null  $symbol
+     * @param  string  $symbol
      * @param  callable  $callback
      * @return void
      */
-    public function listenBookTickerStream($symbol = null, $callback)
+    public function listenBookTickerStream($symbol, $callback)
     {
-        $stream = $symbol ? strtolower($symbol).'@bookTicker' : '!bookTicker';
-
-        $this->client->subscribeStream($stream, $callback);
+        $this->client->subscribeStream(strtolower($symbol).'@bookTicker', $callback);
     }
 
     /**
@@ -116,7 +110,7 @@ trait WebsocketMarket
      */
     public function listenAllMarketBookTickersStream($callback)
     {
-        return $this->listenBookTickerStream(null, $callback);
+        $this->client->subscribeStream('!bookTicker', $callback);
     }
 
     /**

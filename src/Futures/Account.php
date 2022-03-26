@@ -195,7 +195,7 @@ trait Account
      */
     public function allOrders($symbol, array $options = [])
     {
-        return $this->client->publicRequest('GET', '/fapi/v1/allOrders', array_merge([
+        return $this->client->signRequest('GET', '/fapi/v1/allOrders', array_merge([
             'symbol' => $symbol,
         ], $options));
     }
